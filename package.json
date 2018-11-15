@@ -1,0 +1,29 @@
+{
+  "name": "expressbasics",
+  "version": "1.0.0",
+  "description": "express basics education with chalkers",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mulgey/expressBasics.git"
+  },
+  "keywords": [
+    "express",
+    "teamtreehouse"
+  ],
+  "author": "mulgey",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mulgey/expressBasics/issues"
+  },
+  "homepage": "https://github.com/mulgey/expressBasics#readme",
+  "devDependencies": {
+    "express": "^4.16.3"
+  },
+  "dependencies": {
+    "pug": "^2.0.3"
+  }
+}
