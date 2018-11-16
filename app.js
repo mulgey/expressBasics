@@ -2,6 +2,18 @@
 const express = require('express');
 const app = express();
 
+// Loop örneği (01)
+/* 
+const colors = [
+    'red',
+    'orange',
+    'yellow',
+    'green',
+    'blue',
+    'purple'
+  ];
+*/
+
 app.set('view engine', 'pug'); // express e görüntüleme için hangi motoru kullanacağını anlattın. default = views klasörü
 
 app.get('/', (req, res) => {
@@ -9,8 +21,10 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cards', (req, res) => {
-    res.locals.soru = "pH'ı en yüksek su hangisidir?";
-    res.locals.hint = "Üstün lezzet ödüllü hani .."
+    res.locals.soru = "pH'ı en yüksek su hangisidir?"; // değişkenler için tercih ettiğim tanımlama yapısı
+    res.locals.hint = "Üstün lezzet ödüllü hani ..";
+    // Loop örneği (01)
+    //res.locals.renkler = colors;
     res.render('card');
 });
 
