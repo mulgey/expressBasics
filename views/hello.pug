@@ -1,8 +1,11 @@
 extends layout.pug
 
 block içerik
-    h2 Hoşgeldin çekirge!
-    form(action='/hello', method='post')
-        label İsminizi buyurur musunuz: 
-            input(type='text', name='kullanıcıadı')  
-        button(type='submit') Gönder
+    // Eğer isim girilmiş ise içinde isim olan h2 mesajını göster
+    if isim
+        h2 Hoşgeldin çekirge #{isim}!
+    else
+        form(action='/hello', method='post')
+            label İsminizi buyurur musunuz: 
+                input(type='text', name='kullanıcıadı')  
+            button(type='submit') Gönder

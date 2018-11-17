@@ -2,6 +2,10 @@
 const express = require('express');
 const app = express();
 
+// POST esnasında request içerisinde body çalışabilmemiz için middleware kurtarıcı
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: false }));
+
 // Loop örneği (01)
 /* 
 const colors = [
@@ -33,7 +37,8 @@ app.get('/hello', (req, res) => {
 });
 
 app.post('/hello', (req, res) => {
-    res.render('hello');
+    res.locals.isim = req.body.kullanıcıadı;
+    res.render('hello'); //Bu route içerisinde post çereyan ettiği zaman, içinde "isim" anahtarı olan hello dosyasını ekrana yansıt
 });
 
 app.listen(3000, () => {
