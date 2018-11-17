@@ -1,0 +1,8 @@
+extends layout.pug
+
+block içerik
+    h2 Hoşgeldin çekirge!
+    form(action='/hello', method='post')
+        label İsminizi buyurur musunuz: 
+            input(type='text', name='kullanıcıadı')  
+        button(type='submit') Gönder
