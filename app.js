@@ -6,6 +6,10 @@ const app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// Kurabiye çalışmalarımız için middleware
+const cookieParser = require('cookie-parser');
+app.use(cookieParser());
+
 // Loop örneği (01)
 /* 
 const colors = [
@@ -25,7 +29,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/cards', (req, res) => {
-    res.locals.soru = "pH'ı en yüksek su hangisidir?"; // değişkenler için tercih ettiğim tanımlama yapısı
+    res.locals.soru = "pH'ı en yüksek su hangisidir?"; // değişkenler için tercih ettiğim tanımlama yapısı (res.locals)
     res.locals.hint = "Üstün lezzet ödüllü hani ..";
     // Loop örneği (01)
     //res.locals.renkler = colors;
@@ -33,12 +37,14 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.render('hello');
+    res.locals.isim = req.cookies.kurabiye;
+    res.render('hello'); //Bu route içerisinde GET çereyan ettiği zaman kullanacağın isim (isim = pug dosyasındaki değişken), "kurabiye" adlı cookie içerisindeki değere eşit olsun
 });
 
 app.post('/hello', (req, res) => {
+    res.cookie('kurabiye', req.body.kullanıcıadı);
     res.locals.isim = req.body.kullanıcıadı;
-    res.render('hello'); //Bu route içerisinde post çereyan ettiği zaman, içinde "isim" anahtarı olan hello dosyasını ekrana yansıt
+    res.render('hello'); //Bu route içerisinde POST çereyan ettiği zaman, içinde "isim" anahtarı olan hello dosyasını ekrana yansıt
 });
 
 app.listen(3000, () => {
