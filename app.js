@@ -25,7 +25,13 @@ const colors = [
 app.set('view engine', 'pug'); // express e görüntüleme için hangi motoru kullanacağını anlattın. default = views klasörü
 
 app.get('/', (req, res) => {
-    res.render('index');
+    if (req.cookies.kurabiye) { // Yönlendirmeyle veya direkt gelindiğinde, eğer isim değeri içeren "kurabiye" miz varsa, içinde "isim" anahtarı olan index.pug dosyasıyla çalıştır
+        res.locals.isim = req.cookies.kurabiye;
+        res.render('index'); 
+    } else { // eğer "kurabiye" cookie si yoksa, giriş sayfası olan hello ya yönlendir
+        res.redirect("/hello");
+    }
+    
 });
 
 app.get('/cards', (req, res) => {
@@ -37,14 +43,17 @@ app.get('/cards', (req, res) => {
 });
 
 app.get('/hello', (req, res) => {
-    res.locals.isim = req.cookies.kurabiye;
-    res.render('hello'); //Bu route içerisinde GET çereyan ettiği zaman kullanacağın isim (isim = pug dosyasındaki değişken), "kurabiye" adlı cookie içerisindeki değere eşit olsun
+    if (req.cookies.kurabiye) {
+        res.redirect("/");
+    } else {
+        res.render('hello');
+    }
+    
 });
 
 app.post('/hello', (req, res) => {
-    res.cookie('kurabiye', req.body.kullanıcıadı);
-    res.locals.isim = req.body.kullanıcıadı;
-    res.render('hello'); //Bu route içerisinde POST çereyan ettiği zaman, içinde "isim" anahtarı olan hello dosyasını ekrana yansıt
+    res.cookie('kurabiye', req.body.kullanıcıadı); // POST cereyan ettiği zaman, "kullanıcıadı" olarak girilen değeri "kurabiye" olarak cookie le
+    res.redirect('/'); // Ardından giriş sayfasına yolla
 });
 
 app.listen(3000, () => {
