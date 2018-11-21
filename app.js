@@ -31,7 +31,6 @@ app.get('/', (req, res) => {
     } else { // eğer "kurabiye" cookie si yoksa, giriş sayfası olan hello ya yönlendir
         res.redirect("/hello");
     }
-    
 });
 
 app.get('/cards', (req, res) => {
@@ -48,12 +47,16 @@ app.get('/hello', (req, res) => {
     } else {
         res.render('hello');
     }
-    
 });
 
 app.post('/hello', (req, res) => {
     res.cookie('kurabiye', req.body.kullanıcıadı); // POST cereyan ettiği zaman, "kullanıcıadı" olarak girilen değeri "kurabiye" olarak cookie le
     res.redirect('/'); // Ardından giriş sayfasına yolla
+});
+
+app.post('/goodbye', (req, res) => {
+    res.clearCookie('kurabiye');
+    res.redirect('/hello');
 });
 
 app.listen(3000, () => {
