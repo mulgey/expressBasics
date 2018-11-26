@@ -22,6 +22,20 @@ const colors = [
   ];
 */
 
+// Middleware örneği (02)
+
+/*
+app.use((req, res, next) => {
+    req.mesaj = 'Bu bir sesli mesajdır!';
+    next();
+});
+
+app.use((req, res, next) => {
+    console.log(req.mesaj);
+    next();
+});
+*/
+
 app.set('view engine', 'pug'); // express e görüntüleme için hangi motoru kullanacağını anlattın. default = views klasörü
 
 app.get('/', (req, res) => {
