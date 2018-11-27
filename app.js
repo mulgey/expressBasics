@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
-// Loop örneği (01)
+// LOOP ÖRNEĞİ (01)
 /* 
 const colors = [
     'red',
@@ -22,7 +22,7 @@ const colors = [
   ];
 */
 
-// Middleware örneği (02)
+// MIDDLEWARE ÖRNEĞİ (02)
 
 /*
 app.use((req, res, next) => {
