@@ -23,7 +23,6 @@ const colors = [
 */
 
 // MIDDLEWARE ÖRNEĞİ (02)
-
 /*
 app.use((req, res, next) => {
     req.mesaj = 'Bu bir sesli mesajdır!';
@@ -32,6 +31,21 @@ app.use((req, res, next) => {
 
 app.use((req, res, next) => {
     console.log(req.mesaj);
+    next();
+});
+*/
+
+// ERROR MIDDLEWARE ÖRNEĞİ (03)
+/*
+app.use((req, res, next) => {
+    console.log("Hata öncesi selam");
+    const hata = new Error("Aman Allah'ım!"); // Problemi biz oluşturduk, problem bizde :p
+    hata.durum = 500; // "err" yerine "hata", "status" yerine "durum"
+    next(hata);
+});
+
+app.use((req, res, next) => {
+    console.log("Hata sonrası selam"); // Bu selam hatadan sonra olduğu için gözükmeyecek
     next();
 });
 */
@@ -50,7 +64,7 @@ app.get('/', (req, res) => {
 app.get('/cards', (req, res) => {
     res.locals.soru = "pH'ı en yüksek su hangisidir?"; // değişkenler için tercih ettiğim tanımlama yapısı (res.locals)
     res.locals.hint = "Üstün lezzet ödüllü hani ..";
-    // Loop örneği (01)
+    // LOOP ÖRNEĞİ (01)
     //res.locals.renkler = colors;
     res.render('card');
 });
@@ -72,6 +86,19 @@ app.post('/goodbye', (req, res) => {
     res.clearCookie('kurabiye');
     res.redirect('/hello');
 });
+
+// ERROR ÖRNEĞİ (03)
+app.use((req, res, next) => {
+    const hata = new Error('Sayfayı bulamadım agaa!');
+    hata.durum = 404;
+    next(hata);
+});
+
+app.use((hata, req, res, next) => { // "err" yerine "hata" kullandım, oldu gitti
+    res.locals.yanlış = hata;
+    res.status(hata.durum); // "err.status" yerine "hata.durum" kullanabildik. res.status, res.hata olarak değiştirilemez
+    res.render('error');
+})
 
 app.listen(3000, () => {
     console.log('Sunucu tam takır');
