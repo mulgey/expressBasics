@@ -3,29 +3,29 @@
         "title": "JavaScript Flashcards",
         "cards": [
             {
-                "question": "What language are Express apps written in?",
-                "hint": "It starts with a \"J\"",
-                "answer": "JavaScript"
+                "soru": "What language are Express apps written in?",
+                "ipucu": "It starts with a \"J\"",
+                "cevap": "JavaScript"
             },
             {
-                "question": "What is one way a website can store data in a user's browser?",
-                "hint": "They are delicious with milk",
-                "answer": "Cookies"
+                "soru": "What is one way a website can store data in a user's browser?",
+                "ipucu": "They are delicious with milk",
+                "cevap": "Cookies"
             },
             {
-                "question": "What is a common way to shorten the response object's name inside middleware?",
-                "hint": "It has the same abbreviation as \"resolution\"",
-                "answer": "res"
+                "soru": "What is a common way to shorten the response object's name inside middleware?",
+                "ipucu": "It has the same abbreviation as \"resolution\"",
+                "cevap": "res"
             },
             {
-                "question": "How many different values can booleans have?",
-                "hint": "Think: binary",
-                "answer": "2"
+                "soru": "How many different values can booleans have?",
+                "ipucu": "Think: binary",
+                "cevap": "2"
             },
             {
-                "question": "Which HTML element can contain JavaScript?",
-                "hint": "It starts with an \"s\"",
-                "answer": "<script>"
+                "soru": "Which HTML element can contain JavaScript?",
+                "ipucu": "It starts with an \"s\"",
+                "cevap": "<script>"
             }
         ]
     }
