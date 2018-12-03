@@ -14,7 +14,16 @@ router.get('/:id', (req, res) => { // kendi route u içerisinde taşıdıktan so
     const sorucevapMetni = cards[id][kartYüzü]; // örneğimizde: cards[2][soru] dan ikinci soruyu getirir
     const { ipucu } = cards[id]; // örneğimizde cards[2][ipucu] yolu ile ikinci ipucunu getirir
     
-    const ceptekiVeri = { sorucevapMetni, ipucu }; // örneğimizde { " "cards[2][soru]", "cards[2][ipucu]" "} olarak 2.sıradaki soruyu ve ipucunu depolar
+    const ceptekiVeri = { id, sorucevapMetni }; // { "2", "cards[2][soru]" } verilerini, res.locals a itelemek üzere depolar
+    if (kartYüzü === 'soru') {
+        ceptekiVeri.ipucu = ipucu; // örneğimizde ceptekiVeri ye cards[2][ipucu] nu ekliyoruz ama bu kısımda aydınlamaya ihtiyacım var
+        ceptekiVeri.gösterilecek = 'cevap'; // ceptekiVeri ye res.locals verilerini eklemeye devam ediyoruz aşağı doğru
+        ceptekiVeri.gösterilecekTaraf = 'Cevap';
+    } else if (kartYüzü === 'cevap') {
+        ceptekiVeri.gösterilecek = 'soru';
+        ceptekiVeri.gösterilecekTaraf = 'Soru';
+    }
+    
     //res.locals.soru = cards[req.params.id].soru; // değişkenler için tercih ettiğim tanımlama yapısı (res.locals)
     //res.locals.ipucu = cards[req.params.id].ipucu; // req.params.id yapısı ile, url nin sonundaki sayıyı yakalayabildik
     // LOOP ÖRNEĞİ (01)
