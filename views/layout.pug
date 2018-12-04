@@ -4,6 +4,11 @@ html(lang="en")
     title Flash Cards
   body
     include includes/header.pug
+    // Aşağıda eklediğimiz kısımda, isim cookie si varsa eğer tüm sayfalarda hoşgeldin ve veda zamanı kısımlarının olmasını istiyoruz
+    if isim
+      h2 Hoşgeldin #{isim}!
+      form(action='/goodbye', method='post') 
+            button(type="submit") Veda zamanı
     // Ekstra içerik block kısmına lütfen
     block içerik
     include includes/footer.pug
