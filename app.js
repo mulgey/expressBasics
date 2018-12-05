@@ -10,6 +10,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 const cookieParser = require('cookie-parser');
 app.use(cookieParser());
 
+// Public klasöründen statik dosyalarımızı, /static route u ile sunuyoruz
+app.use('/static', express.static('public'));
+
 app.set('view engine', 'pug'); // express e görüntüleme için hangi motoru kullanacağını anlattın. default = views klasörü
 
 // Route ları kestiğimiz yere (route/index.js e göndermiştik) şu 2 satır kodu iliştiriyoruz ki yokluğu hissedilmesin

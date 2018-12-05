@@ -62,7 +62,7 @@ router.get('/hello', (req, res) => {
 
 router.post('/hello', (req, res) => {
     res.cookie('kurabiye', req.body.kullanıcıadı); // POST cereyan ettiği zaman, "kullanıcıadı" olarak girilen değeri "kurabiye" olarak cookie le
-    res.redirect('/'); // Ardından giriş sayfasına yolla
+    res.redirect('/'); // Ardından giriş sayfasına yolla. Bu aşamadan sonra EXECUTION STOP istersen eğer (sonraki res.render ler vs) başına RETURN geç
 });
 
 router.post('/goodbye', (req, res) => {
