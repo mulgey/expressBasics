@@ -1,0 +1,17 @@
+doctype html
+html(lang='en')
+  head
+    title Flash Cards
+    link(rel='stylesheet', href='stylesheets/style.css')
+  body
+    header
+      img(src='img/logo.png')
+      p An app to help you study
+    section.namecard
+      .namecard-hello
+        p.namecard-greeting Welcome, John!
+        form.namecard-exit(action='/goodbye', method='POST')
+          button(type='submit')
+            img(src='img/close.svg')
+      h1.namecard-prompt Let's get started
+      a.namecard-submit(href='card-front.html') Begin!
